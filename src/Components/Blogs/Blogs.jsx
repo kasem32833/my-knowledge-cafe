@@ -1,8 +1,7 @@
 import {useState, useEffect } from "react";
 import Blog from "../Blog/Blog";
-import Bookmarks from "../Bookmarks";
 
-const Blogs = () => {
+const Blogs = ({handleBookmark}) => {
 
     const [blogs, setBlogs] = useState([])
     
@@ -14,11 +13,17 @@ const Blogs = () => {
     },[])
 
     return (
-        <div className="container flex mx-auto">
-
+        <div className="md:w-2/3">
             <h3>Blogs:{blogs.length}</h3>
-            <Blog></Blog>
-            <Bookmarks></Bookmarks>
+
+            {
+                blogs.map(blog => <Blog 
+                    key={blog.id} 
+                    blog={blog}
+                    handleBookmark = {handleBookmark}>
+                    
+                    </Blog>)
+            }
         </div>
     );
 };
